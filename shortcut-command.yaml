@@ -1,0 +1,8 @@
+shortcut
+ctrl + a = jump to the beginning of the command line
+ctrl + e = Jump to the end of the ommand line
+ctrl + u = clear from the cursor to the beginning of the command line
+ctrl + k = clear from the cursor to the end of the command line
+ctrl + left arrow = jump to the beginning of the previous word on the command line
+ctrl + right arrow = jump to the end of the next word on the command line
+
