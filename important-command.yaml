@@ -1,0 +1,64 @@
+- mkdir
+- rmdir
+- rm
+- ls
+- cd
+- pwd 
+- mkdir
+- cp -r cp -r folder /backup/: Menyalin direktori folder beserta isinya ke /backup/
+- mv
+
+- find - search for files 
+  find /home/user -name "*.txt": Mencari semua file berakhiran .txt di direktori /home/user.
+  find / -type d -name "folder_name": Mencari direktori bernama folder_name di seluruh sistem.
+
+- grep = search inside file 
+  grep "text" file.txt: Mencari kata "text" dalam file file.txt.
+  grep -r "error" /var/log/: Mencari kata "error" secara rekursif di direktori /var/log/.
+
+- chmod = Change file permission 
+  chmod 755 script.sh: Mengatur file script.sh dengan izin eksekusi untuk pemilik, dan izin baca untuk grup dan lainnya.
+  chmod u+x file.txt: Memberikan izin eksekusi kepada pemilik file.
+
+- chown = change fileowner 
+  chown user file.txt: Mengubah kepemilikan file.txt menjadi pengguna user.
+  chown user:group folder/: Mengubah pemilik dan grup folder.
+
+- df = disk Space Usage
+  df -h: Menampilkan penggunaan disk dengan format yang mudah dibaca manusia.
+
+- du = disk usage mirip ls -lthr
+  du -h /home/user/: Menampilkan ukuran direktori /home/user/ dengan format yang mudah dibaca
+
+- ps= Display running process
+  ps aux: Menampilkan daftar semua proses yang berjalan di sistem
+  ps -ef: Menampilkan semua proses dengan format lengkap
+
+- kill = terminate process
+  kill 1234: Mengakhiri proses dengan ID 1234
+  kill -9 1234: Memaksa mengakhiri proses dengan ID 1234
+
+- wc= wourd count
+  wc file.txt: Menghitung jumlah baris, kata, dan byte dalam file.txt
+  wc -l file.txt: Menghitung jumlah baris dalam file.txt
+
+- head/tail 
+  head file.txt: Menampilkan 10 baris pertama dari file.txt.
+  tail -n 20 file.txt: Menampilkan 20 baris terakhir dari file.txt.
+
+- tar - Archive file
+  tar -cvf archive.tar folder/: Membuat arsip dari direktori folder
+  tar -xvf archive.tar: Mengekstrak arsip archive.tar
+
+- man
+  man ls: Menampilkan panduan penggunaan command ls.
+  man grep: Menampilkan panduan penggunaan command grep.
+
+- uname = system information
+  uname -a: Menampilkan informasi sistem lengkap.
+  uname -r: Menampilkan versi kernel Linux.
+ 
+
+- scp command
+scp /home/mobaxterm/Desktop/Linux-teory-BAB-1.pdf root@iptujuan:/root/linux-fundamental/bab1-fundamental-linux-overview (simpanpada directory mana)
+
