@@ -1,0 +1,60 @@
+1. esc + v = untuk memasuki mode visual
+2. esc + shift v = untuk memasuki mode visual line
+3. esc + ctrl v = untuk memasuki mode visual block
+4. esc + i = tulis teks
+5. esc + o = untuk menulis dan new line (ditempat ursor berada)
+6. esc + :set nu = menambahkan number
+7. esc + :set nonu = menghilangkan number
+8. esc + u = mengembalikan perubahan (undo)
+9. esc + ctrl r = mengulang kembali perubahan yang di undo (redo)
+10. esc + shift v + y = copy
+11. esc + p = paste
+12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 12. esc + dd = menghapus 1 baris 
+13. esc + 0 = pindah ke awal baris
+14. esc + $ = pindah ke akhir baris 
+15. esc + gg = pindah ke awal document 
+16. esc + G = pindah ke akhir document 
