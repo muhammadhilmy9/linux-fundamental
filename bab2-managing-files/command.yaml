@@ -1,0 +1,18 @@
+- whatis
+  Perintah whatis di Red Hat Enterprise Linux (RHEL) digunakan untuk memberikan deskripsi singkat tentang suatu perintah atau program yang tersedia di sistem. Ini mengambil informasi dari basis data man pages (manual pages) untuk memberikan ringkasan satu baris dari perintah atau program tersebut.
+- Man
+  Perintah man (singkatan dari manual) di Linux digunakan untuk menampilkan halaman manual (documentation) dari suatu perintah, program, atau fungsi sistem. Halaman manual ini berisi informasi detail seperti deskripsi perintah, opsi-opsi yang tersedia, cara penggunaan, contoh, dan lainnya.
+
+-stdin = standard input
+-stdout = standart output
+-stderr = standard error
+apa yang bisa dilakukan untuk memanipulasi standard tersebut
+- > : mengalihkan output ke standar ke file, menimpa file jika sudah ada.
+- >> : mengalihkan output standard ke file, menambahkan ke file jika sudah ada
+- < : mengambil input dari file
+- 2> : mengalihkan error output (stderr) ke file, menimpa file jika sudah ada.
+- 2>> : mengalihkan error output (stderr) ke file, menambahkan ke file jika sudah ada
+- &> : mengalihkan output standar dan error ke file, menimpa file jika sudah ada.
+- &>>: mengalihkan output standar dan error ke file, menambahkan ke file jika sudah ada
+- |: mengarahkan output dari satu perintah ke perintah lain (Pipe)
+  

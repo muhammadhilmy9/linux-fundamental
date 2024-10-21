@@ -1,0 +1,123 @@
+1. Mode di Vim
+Vim memiliki beberapa mode operasi, yang menentukan bagaimana kamu berinteraksi dengan teks:
+
+Normal Mode: Mode default saat Vim dijalankan. Dalam mode ini, kamu dapat menggunakan berbagai perintah untuk memindahkan kursor, menghapus teks, menyalin, dan melakukan banyak operasi lainnya. Kamu tidak bisa mengetik teks secara langsung di mode ini.
+Insert Mode: Dalam mode ini, kamu bisa mengetik teks. Untuk masuk ke mode insert dari normal mode, tekan i atau a.
+Visual Mode: Mode ini digunakan untuk memilih teks. Setelah teks dipilih, kamu bisa menjalankan perintah untuk memotong, menyalin, atau memodifikasinya. Untuk masuk ke mode ini, tekan v (visual) atau V (visual line).
+Command Mode (Ex Mode): Mode ini digunakan untuk menjalankan perintah ex seperti menyimpan file, keluar dari Vim, mengganti teks secara global, dll. Kamu bisa masuk ke mode ini dari normal mode dengan menekan :
+   
+2. Navigasi Cepat
+Vim memiliki berbagai perintah navigasi yang sangat efisien:
+
+H, J, K, L: Bergerak ke kiri, bawah, atas, dan kanan. Ini adalah navigasi dasar yang menggantikan tombol panah.
+w: Pindah ke awal kata berikutnya.
+b: Pindah ke awal kata sebelumnya.
+0: Pindah ke awal baris.
+$: Pindah ke akhir baris.
+gg: Pindah ke awal dokumen.
+G: Pindah ke akhir dokumen.
+Ctrl + d / Ctrl + u: Scroll setengah halaman ke bawah/atas.
+
+3. Pengeditan Teks
+Vim memiliki berbagai perintah yang memungkinkan kamu mengedit teks dengan sangat efisien tanpa perlu menggunakan mouse:
+
+i: Masuk ke insert mode sebelum kursor.
+a: Masuk ke insert mode setelah kursor.
+o: Menyisipkan baris baru di bawah kursor dan masuk ke insert mode.
+x: Menghapus karakter di bawah kursor.
+dd: Menghapus seluruh baris.
+yy: Menyalin satu baris.
+p: Menempelkan teks yang telah disalin atau dipotong.
+r: Mengganti karakter di bawah kursor dengan karakter yang ditentukan.
+u: Undo perubahan terakhir.
+Ctrl + r: Redo perubahan yang di-undo.
+.: Mengulang perintah terakhir.
+4. Visual Mode dan Pemilihan Teks
+v: Memilih teks secara karakter.
+V: Memilih teks per baris.
+Ctrl + v: Memilih teks secara blok vertikal (Visual Block Mode).
+Setelah memilih teks, kamu bisa menggunakan perintah seperti d (delete), y (yank/copy), atau c (change) untuk mengeditnya.
+5. Undo dan Redo
+u: Untuk mengembalikan perubahan terakhir (undo).
+Ctrl + r: Untuk mengulang kembali perubahan yang di-undo (redo).
+6. Mencari dan Mengganti (Search and Replace)
+/: Memulai pencarian teks ke depan.
+?: Memulai pencarian teks ke belakang.
+n: Mencari pencocokan berikutnya (next match).
+N: Mencari pencocokan sebelumnya (previous match).
+Untuk mengganti teks:
+
+:%s/teks_lama/teks_baru/g: Mengganti semua kemunculan teks_lama dengan teks_baru di seluruh file.
+/teks_lama/teks_baru/g: Mengganti semua kemunculan teks_lama dengan teks_baru di baris saat ini.
+7. Manajemen File
+Vim memungkinkan kamu bekerja dengan beberapa file sekaligus:
+
+: Menyimpan perubahan ke file.
+: Keluar dari Vim.
+: Menyimpan perubahan dan keluar.
+!: Keluar tanpa menyimpan perubahan.
+<nama_file>: Membuka file lain.
+<nama_file>: Membuka file lain di jendela terpisah (horizontal split).
+<nama_file>: Membuka file lain di jendela terpisah (vertical split).
+8. Fitur Multi-Level Undo (Undo Tree)
+Vim memiliki sistem undo yang sangat canggih. Kamu bisa mengembalikan perubahan tidak hanya satu per satu, tetapi juga mengembalikan ke versi sebelumnya melalui undo tree.
+
+10m: Kembali ke status file 10 menit yang lalu.
+10m: Maju ke status file setelah 10 menit yang lalu.
+9. Makro (Merekam dan Memutar Ulang Perintah)
+Vim memungkinkan kamu untuk merekam urutan perintah sehingga bisa diulang kapan pun:
+
+qa: Mulai merekam ke register a.
+Ketik serangkaian perintah yang ingin direkam.
+q: Mengakhiri perekaman.
+@a: Memutar ulang perintah yang direkam di register a.
+@@: Memutar ulang makro terakhir yang dijalankan.
+10. Buffer, Jendela, dan Tab
+Buffer: Setiap file yang dibuka di Vim dimuat ke dalam buffer. Kamu bisa beralih antar buffer menggunakan perintah:
+
+atau
+: Pindah ke buffer berikutnya.
+atau
+: Pindah ke buffer sebelumnya.
+Jendela (Split Window): Vim mendukung split window untuk bekerja dengan banyak file di satu layar:
+
+atau
+: Membuka file lain di jendela terpisah (horizontal split).
+atau
+: Membuka file lain di jendela terpisah (vertical split).
+Ctrl + w + w: Berpindah antar jendela.
+Tab: Vim juga mendukung tab untuk membuka beberapa buffer dalam tab yang berbeda:
+
+<file>: Membuka file baru di tab baru.
+: Pindah ke tab berikutnya.
+: Pindah ke tab sebelumnya.
+11. Autocompletion
+Vim memiliki fitur autocompletion untuk teks yang sudah ada dalam file atau bahkan dari file lain yang sedang dibuka.
+
+Ctrl + n: Melengkapi teks berdasarkan kata-kata yang ada di buffer.
+Ctrl + x + Ctrl + f: Melengkapi nama file.
+Ctrl + p: Melengkapi teks dengan urutan pencarian sebelumnya.
+12. Plugin dan Kustomisasi
+Vim sangat dapat dikustomisasi, dan kamu bisa menambahkan plugin untuk meningkatkan fungsionalitasnya:
+
+Plugin Manager: Beberapa plugin manager populer seperti Vundle, Pathogen, dan vim-plug memudahkan pemasangan plugin di Vim.
+.vimrc: File konfigurasi Vim (~/.vimrc) dapat digunakan untuk menyesuaikan banyak aspek seperti key bindings, warna, tema, dan menambahkan fitur tambahan.
+13. Syntax Highlighting
+Vim mendukung highlighting untuk berbagai bahasa pemrograman:
+
+on: Mengaktifkan syntax highlighting.
+syntax=<language>: Mengatur syntax highlighting untuk bahasa tertentu (misal set syntax=python).
+14. Fold (Menyembunyikan dan Menampilkan Teks)
+Fitur folding di Vim memungkinkan kamu untuk menyembunyikan bagian teks yang tidak diperlukan:
+
+zf: Membuat fold dari teks yang dipilih.
+zo: Membuka fold.
+zc: Menutup fold.
+foldmethod=indent: Mengaktifkan folding otomatis berdasarkan indentasi.
+15. Navigasi Code (ctags)
+Vim mendukung ctags yang memungkinkan kamu untuk dengan mudah bernavigasi di dalam source code:
+
+Ctrl + ]: Melompat ke definisi dari sebuah fungsi atau simbol.
+Ctrl + t: Kembali ke lokasi sebelumnya.
+Dengan fitur-fitur yang disebutkan di atas, Vim menjadi editor teks yang sangat efisien dan disukai oleh banyak pengembang dan administrator sistem yang bekerja dengan proyek-proyek besar atau lingkungan berbasis terminal
+
