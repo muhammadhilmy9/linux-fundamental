@@ -1,0 +1,13 @@
+#untuk menambahkan user
+useradd username
+usermod -u (uid) -c (comment) -d (directory) -s (shell) username
+#untuk delete user
+userdel username
+userdel -rf username
+
+r - recursive
+f - forcefully
+#to set password for user
+passwd username 
+passwd --stdin username
+verify /etc/shadow

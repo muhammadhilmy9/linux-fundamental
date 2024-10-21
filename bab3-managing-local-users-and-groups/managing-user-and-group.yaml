@@ -1,0 +1,115 @@
+in this chapter, kita bisa belajar mengenai bagaimana membuat user, bagaimana manage group, bagaimana mengatur kata sandi untuk pengguna, menambahkan user kedalam grup, dan manage password policy.
+
+mengelola user
+
+Types of Users
+
+Root user
+System users
+             *system static user
+             *system dynamic user
+normal/regular user 
+sudo user
+
+Di Red Hat Enterprise Linux (RHEL), pengguna (user) di sistem dikategorikan ke dalam beberapa jenis berdasarkan hak akses, tujuan penggunaan, dan skenario spesifik. Pengelolaan user yang baik sangat penting untuk menjaga keamanan dan pengelolaan sistem. Berikut adalah jenis-jenis user di RHEL yang umum digunakan, disertai dengan penjelasan lengkap dan detail:
+
+1. Superuser (Root User)
+Nama: root
+UID: 0
+Deskripsi: Superuser atau root adalah pengguna dengan hak akses penuh ke seluruh sistem. User ini memiliki izin untuk melakukan semua operasi pada sistem, termasuk modifikasi file sistem, konfigurasi jaringan, instalasi perangkat lunak, manajemen user, dan banyak lagi. Root user tidak memiliki batasan, dan kesalahan saat menggunakan akun ini dapat merusak seluruh sistem.
+Kegunaan: Root digunakan untuk tugas administrasi seperti menginstal perangkat lunak, mengubah konfigurasi penting, atau memanajemen user dan file sistem.
+Contoh: Untuk masuk sebagai root, bisa menggunakan perintah su - (substitute user) atau dengan menjalankan perintah menggunakan sudo.
+
+Catatan: Menggunakan akun root secara langsung tidak dianjurkan untuk penggunaan sehari-hari karena risiko keamanan. Sebaiknya gunakan user biasa dan jalankan perintah administratif dengan sudo.
+
+2. Regular Users (Pengguna Biasa)
+Nama: Bebas sesuai keinginan administrator (misalnya john, sarah, dll.)
+UID: 1000 ke atas (untuk user lokal pada sistem modern)
+Deskripsi: Regular users adalah pengguna biasa yang memiliki akses terbatas ke sistem. Mereka hanya bisa memodifikasi file dan direktori yang dimiliki oleh mereka, atau yang diizinkan untuk diakses. Pengguna ini tidak memiliki izin untuk mengubah konfigurasi sistem, tetapi mereka bisa menjalankan aplikasi, mengakses data pribadi mereka, dan berinteraksi dengan sistem dalam batasan yang sudah ditetapkan.
+Kegunaan: Regular users digunakan untuk tugas-tugas harian seperti pengembangan perangkat lunak, pengetikan dokumen, browsing, dan aktivitas lain yang tidak memerlukan hak administrasi.
+Contoh: Ketika seorang administrator membuat akun baru dengan useradd john, maka john adalah regular user dengan akses terbatas.
+
+Fitur Penting:
+Home Directory: Setiap regular user memiliki direktori home pribadi (/home/username), di mana mereka bisa menyimpan file dan konfigurasi pribadi.
+Sudo Access: Meskipun regular user memiliki hak terbatas, mereka bisa diberikan akses sementara ke hak superuser dengan menggunakan perintah sudo, asalkan mereka termasuk dalam grup sudo atau wheel.
+
+3. System Users (Pengguna Sistem)
+Nama: Biasanya nama yang terkait dengan layanan atau daemon, seperti nobody, mail, www-data, sshd, dll.
+UID: Biasanya antara 1 hingga 999 (bisa bervariasi tergantung pada distribusi atau konfigurasi)
+Deskripsi: System users adalah akun yang dibuat secara otomatis oleh sistem saat layanan atau daemon diinstal. Mereka digunakan untuk menjalankan proses-proses tertentu dengan hak akses yang sangat terbatas untuk meningkatkan keamanan. System users tidak memerlukan direktori home atau shell login karena mereka tidak digunakan oleh manusia.
+Kegunaan: Menjalankan proses layanan (daemon) seperti web server, mail server, atau database dengan hak akses terbatas, sehingga jika layanan ini diretas, dampaknya terbatas.
+Contoh:
+
+sshd: User ini digunakan oleh daemon OpenSSH untuk menangani koneksi SSH.
+apache: User ini digunakan oleh Apache web server.
+nobody: User ini biasanya digunakan oleh layanan yang memerlukan akun "kosong" dengan hak akses minimal.
+Fitur Penting:
+
+Tidak memiliki direktori home standar seperti user biasa.
+Biasanya tidak bisa digunakan untuk login interaktif (shell diatur ke /sbin/nologin atau /bin/false).
+UID dalam rentang 1 hingga 999 di banyak sistem Linux.
+
+4. Sudo Users
+Nama: Bisa berupa regular user, tapi dengan hak khusus.
+Deskripsi: Sudo users adalah regular users yang diberi hak untuk menjalankan perintah sebagai superuser (root) atau pengguna lain melalui perintah sudo. User ini masih beroperasi sebagai regular user, tetapi ketika perlu menjalankan tugas administratif, mereka dapat melakukannya dengan memasukkan password mereka sendiri (atau root).
+Kegunaan: Sudo users memungkinkan administrasi sistem dilakukan oleh regular users tanpa harus login sebagai root, yang membantu menjaga keamanan dengan membatasi penggunaan akun root.
+Contoh: Misalkan user john adalah regular user tetapi terdaftar di file /etc/sudoers. Ia dapat menjalankan perintah dengan sudo seperti:
+bash
+sudo yum install httpd
+Fitur Penting:
+
+- Akses sudo diatur di file /etc/sudoers atau melalui grup wheel di banyak distribusi Linux.
+- Penggunaan sudo dicatat dalam log untuk audit.
+- Sudo dapat diatur untuk mengizinkan akses penuh atau membatasi perintah yang bisa dijalankan oleh pengguna tertentu.
+
+5. Guest Users (Pengguna Tamu)
+Nama: Biasanya guest atau yang sejenis.
+Deskripsi: Guest users adalah akun sementara dengan akses yang sangat terbatas. Akun ini digunakan untuk sesi sekali pakai atau bagi pengguna yang tidak memerlukan akses tetap ke sistem. File dan konfigurasi guest users biasanya dihapus setelah logout.
+Kegunaan: Guest users digunakan untuk menyediakan akses sementara tanpa perlu membuat akun user yang permanen. Misalnya, jika seseorang perlu menggunakan komputer untuk waktu singkat, guest account memungkinkan mereka melakukan hal tersebut tanpa menyimpan data di sistem secara permanen.
+Contoh: Guest user seringkali disediakan dalam sistem desktop atau server yang digunakan untuk publik.
+
+Fitur Penting:
+
+Tidak memiliki direktori home yang tetap; file dan pengaturan dihapus saat logout.
+Sangat terbatas dalam hal akses ke sistem.
+
+6. Service Accounts (Akun Layanan)
+Nama: Bisa berupa nama layanan atau aplikasi tertentu, misalnya postgres, nginx, mysql, dll.
+Deskripsi: Service accounts mirip dengan system users, tetapi lebih spesifik digunakan oleh aplikasi atau layanan tertentu untuk mengelola tugas yang berkaitan dengan aplikasi tersebut. Service accounts memiliki hak akses terbatas untuk memastikan keamanan layanan yang berjalan.
+Kegunaan: Service accounts memungkinkan layanan atau aplikasi seperti web server, database, atau sistem manajemen menjalankan tugas tanpa memberikan hak akses berlebihan ke seluruh sistem.
+Contoh:
+
+postgres: Akun yang digunakan oleh PostgreSQL untuk menjalankan layanan database.
+mysql: Akun yang digunakan oleh MySQL atau MariaDB untuk menjalankan database.
+Fitur Penting:
+
+Tidak digunakan oleh manusia untuk login, biasanya digunakan oleh aplikasi.
+Hak aksesnya dibatasi hanya ke file dan direktori yang dibutuhkan oleh layanan tersebut.
+
+7. Pseudo-Users
+Nama: nobody, bin, daemon, sys, dll.
+Deskripsi: Pseudo-users adalah akun pengguna khusus yang didefinisikan di sistem Linux. Akun ini tidak digunakan untuk login dan sering digunakan oleh proses sistem atau untuk tugas internal sistem.
+Kegunaan: Pseudo-users digunakan oleh proses atau layanan sistem yang membutuhkan identitas pengguna untuk menjaga file dan proses, tetapi tidak membutuhkan interaksi manusia langsung.
+Contoh:
+
+nobody: Sering digunakan sebagai akun dengan hak akses paling minimal, misalnya oleh proses yang tidak membutuhkan hak istimewa apapun.
+bin: Digunakan oleh proses yang membutuhkan akses ke file biner dalam sistem.
+
+8. LDAP/Network Users
+Nama: Biasanya didefinisikan oleh server LDAP atau sistem manajemen user jarak jauh.
+Deskripsi: LDAP atau network users adalah pengguna yang disimpan di direktori layanan jaringan, seperti LDAP (Lightweight Directory Access Protocol) atau Active Directory. Pengguna ini dapat login ke berbagai mesin dalam jaringan dengan kredensial yang sama.
+Kegunaan: Digunakan dalam jaringan yang besar di mana manajemen user dilakukan secara terpusat. Ketika user login ke sistem, kredensial mereka akan divalidasi oleh server LDAP atau Active Directory.
+Contoh: Seorang pengguna bisa login ke beberapa server RHEL yang terhubung dalam satu jaringan menggunakan akun LDAP yang sama.
+
+Fitur Penting:
+
+Dikelola di server pusat, sehingga memudahkan manajemen user dalam jaringan besar.
+Tidak perlu membuat akun lokal di setiap mesin.
+
+9. Application Users
+Nama: Bergantung pada aplikasi tertentu.
+Deskripsi: Application users adalah akun yang dikelola oleh aplikasi tertentu untuk mengelola akses pengguna internal aplikasi. Akun ini biasanya tidak memiliki akses langsung ke sistem RHEL, melainkan digunakan di dalam aplikasi seperti web server, CRM, atau database.
+Kegunaan: Digunakan oleh aplikasi untuk mengelola otorisasi pengguna dan peran di dalam aplikasi.
+Contoh: Dalam sebuah aplikasi web, user mungkin dikelola dalam basis data internal aplikasi yang berbeda dari user sistem RHEL.
+
+Dengan memahami berbagai jenis pengguna di RHEL, seorang administrator dapat menerapkan kontrol akses yang tepat sesuai dengan kebutuhan operasional dan keamanan sistem. Pengelolaan user yang baik sangat penting untuk menjaga integritas dan keamanan lingkungan RHEL.

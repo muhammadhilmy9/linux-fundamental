@@ -1,0 +1,36 @@
+command untuk add user adalah useradd username.
+
+contoh useradd hilmy
+lalu verify dengan id username
+maka akan terbentuk
+hilmy = username
+x = Encrypted password
+1002 = UID
+1002 = GID
+/home/hilmy = USers Home Directory 
+/bin/bash = Users Login shell
+
+ketika kita membuat user, cobalah masuk kedalam /home/hil kemudian ls -a, disana terdapat file" tersembunyi yang disebut sebagai file konfigurasi pengguna. bagaimana mendapatkan file ini?
+coba cd /etc/skel/
+ls -a
+maka terdapat kerangka direktory, yang berisi file konfigurasi default dan direktory yang digunakan sebagai template saat membuat akun pengguna baru dibuat. konten pada skel direktory ini disalin ke direktory home pengguna baru.
+sehingga dapat dikatakan bahwa /etc/skel ini sebagai blue print untuk akun pengguna yang memastikan konsistensi dalamkonfigurasi pengguna di seluruh system.
+
+ketika kita lihat cat /etc/passwd maka akan terdapat user yang telah kita buat dengan uid gid dll default. bagaimana memodifikasinya? 
+ada command 
+#useradd = digunakan untuk membuat user 
+#usermod = digunakan untuk memodifikasi user 
+misalkan kita ingin modifikasi user hilmy tdi,
+usermod -U 1002 -C "Welcome" (Cdisana sebagai commentar)
+misalkan ingin membuat user dengan uid diustom bisa?
+useradd -u 1010 -C "user baru"
+
+untuk membatasi user misal user hil
+usermod -S /sbin/nologin hil
+
+untuk Lock dan unlok user hil
+usermod -L hil
+usermod -U hil
+
+untuk set password
+passwd hil
