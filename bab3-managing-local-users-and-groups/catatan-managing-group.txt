@@ -1,0 +1,27 @@
+Group
+Group pada rhel adalah kumpulan user yang berbagi izin tertentu untuk mengakses direktory file atau resource system lainnya sehingga dengan menugaskan pengguna ke group, administrator dapat secara efisien mengelola izin dan kontrol akses system sehingga setiap akun pengguna di linux termasuk dalam satu group. dan group membantu mengatur pengguna dengan hak akses serupa.
+
+ada 2 type group
+1. Primary group adalah group yang diasosiasikan dengan user. ketika membuat user, maka akan otomatis di assign ke primary group yang biasanya namanya sesuai dengan username user. primary group digunakan sebagai default untuk izin dan kepemilikan file sehingga user juga dapat menjadi bagian dari grup sekunder tambahan untuk mengakses resource dan direktory tertentu.
+2. Supplementary group
+supplementary group adalah grup tambahan yang dapat dimiliki user selain dari primary group.
+
+percobaan membuat group
+#groupadd ansible
+verify
+#cat /etc/group
+
+ansible :x: 1003 : -
+ansible = group name
+:x: = uncrypted password
+1003 = GID
+- = member of group
+
+untuk mengatur password group
+#gpasswd groupname
+untuk mengatur password group dan menambahkan user juga kedalam group
+#gpasswd -a username groupname
+jika ingin menambahkan multiple user kedalam group
+#gpasswd -M username,username groupname 
+
+ 

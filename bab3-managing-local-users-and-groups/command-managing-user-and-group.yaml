@@ -11,3 +11,47 @@ f - forcefully
 passwd username 
 passwd --stdin username
 verify /etc/shadow
+
+#ketika ingin lock user 
+usermod -L username /sbin/nologin
+
+#ketika ingin membuka lock user
+usermod -U username
+
+#To add users into a group
+gpasswd -a username groupname -- to add a single user to a group
+gpasswd -M username,username groupname -- to add multiple users to a group
+usermod -g groupname username -- to add an existing user to a primary group
+usermod -G groupname username -- to add an existing user to a supplementary group
+useradd -g groupname username -- to add a new user to a primary group
+useradd -G groupname username -- to add a new user to a supplementary group
+groupmod --help (untuk melihat list apasaja yang bisa dilakukan)
+
+#memberikan password expires
+coba lihat terlebih dahulu dengan command 
+chage -l ansible
+jika masih never-never, maka kita coba set maksimum date 
+chage -m 30 -M 90 -W 5 -I 3 
+-m = minimum password change
+-M = maximum password change
+-W = warning before password expire
+-I = password inactive dari minimum days
+
+#memberikan account expires
+chage -E 2024-12-21 username
+
+atau bisa edit configurasi di 
+vim /etc/login.defs
+
+
+#memberikan sudo privillage ke user yang ingin ditambahkan sbg root 
+coba masuk dan edit ke vim /etc/sudoers
+dibawah tulisan root, masukkan username ansible ALL=(ALL) ALL
+setelah itu, bisa dicoba dengan mengetikkan sudo sebelum command.
+jika tidak ingin ditanyakan password setiap kali melakukan sudo
+ansible ALL=(ALL) NOPASSWD: ALL 
+
+
+
+
+
