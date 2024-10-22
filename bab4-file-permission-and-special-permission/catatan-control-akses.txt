@@ -1,0 +1,117 @@
+control access to file 
+
+Linux memiliki lapisan security yang berbeda, 
+File Permission
+Special Permission
+ACL -- Access Control List
+Selinux 
+Firewall
+
+yang di bahas di bab ini adalah File Permission dan Special Permission
+
+File Permission
+
+Read -- r
+Write -- w
+Execute -- x
+
+Di Linux, file permissions atau izin akses file adalah mekanisme penting yang mengatur siapa yang dapat membaca, menulis, atau menjalankan file dan direktori. Sistem ini menggunakan konsep pengguna, grup, dan mode untuk mengendalikan akses. Berikut penjelasan detail tentang apa yang harus diketahui tentang file permission di Linux:
+
+1. Konsep Utama: Pengguna, Grup, dan Lainnya
+Owner (pemilik): Setiap file atau direktori memiliki pemilik, yaitu pengguna yang membuat file tersebut atau pengguna yang ditetapkan sebagai pemilik.
+Group (grup): File atau direktori juga bisa dimiliki oleh grup, yang terdiri dari beberapa pengguna. Semua anggota grup tersebut akan memiliki izin akses yang sama terhadap file.
+Other (lainnya): Pengguna yang bukan pemilik atau anggota grup, dianggap sebagai "others" (orang lain), dan izin akses untuk mereka diatur secara terpisah.
+2. Jenis Izin (Permissions)
+Ada tiga jenis izin (permissions) yang berlaku untuk file atau direktori:
+
+Read (r):
+Untuk file: Mengizinkan membaca isi file.
+Untuk direktori: Mengizinkan melihat daftar isi direktori.
+Write (w):
+Untuk file: Mengizinkan mengubah atau memodifikasi file.
+Untuk direktori: Mengizinkan membuat, menghapus, atau mengubah file dalam direktori.
+Execute (x):
+Untuk file: Mengizinkan menjalankan file sebagai program atau script.
+Untuk direktori: Mengizinkan memasuki direktori (menggunakan perintah cd).
+3. Format Izin File
+Izin file ditampilkan dalam bentuk 10 karakter saat kita menjalankan perintah ls -l. Contoh:
+
+diff
+Copy code
+-rwxr-xr--
+Karakter pertama menunjukkan jenis file:
+
+- : file biasa (regular file).
+d : direktori.
+l : symbolic link (shortcut ke file lain).
+Tiga set berikutnya (masing-masing terdiri dari tiga karakter) menunjukkan izin untuk pemilik, grup, dan lainnya secara berurutan:
+
+rwx: Read, Write, Execute untuk Owner.
+r-x: Read, Execute untuk Group (tidak ada izin menulis).
+r--: Read saja untuk Other (tidak ada izin menulis dan menjalankan).
+4. Mengubah Izin File
+Izin file dapat diubah dengan perintah chmod (change mode). Ada dua cara untuk menggunakannya:
+
+Simbolis (Symbolic Mode): Menggunakan huruf untuk menambahkan, menghapus, atau menetapkan izin. Contoh:
+
+chmod u+x file.txt: Menambahkan izin execute (x) untuk owner (u).
+chmod g-w file.txt: Menghapus izin write (w) untuk grup (g).
+chmod o=r file.txt: Menetapkan izin read-only untuk others (o).
+Numerik (Numeric Mode / Octal): Menggunakan angka untuk mewakili setiap kombinasi izin:
+
+Read = 4
+Write = 2
+Execute = 1
+Kombinasi izin dihitung dengan menjumlahkan nilai-nilai tersebut. Contoh:
+
+rwx = 4 + 2 + 1 = 7 (baca, tulis, dan jalankan).
+rw- = 4 + 2 = 6 (baca dan tulis).
+r-- = 4 = 4 (baca saja).
+Saat mengubah izin file, Anda memberikan tiga angka: satu untuk owner, satu untuk grup, dan satu untuk others. Contoh:
+
+chmod 755 file.txt: Mengatur izin menjadi rwxr-xr-x, artinya pemilik bisa membaca, menulis, dan menjalankan, sementara grup dan lainnya hanya bisa membaca dan menjalankan.
+5. Mengubah Pemilik atau Grup File
+Perintah ini digunakan untuk mengubah pemilik atau grup file:
+
+chown: Mengubah pemilik file. Contoh: chown user1 file.txt
+
+chgrp: Mengubah grup pemilik file. Contoh: chgrp group1 file.txt
+
+6. Izin Khusus (Special Permissions)
+Selain izin dasar, Linux juga memiliki izin khusus yang dapat diterapkan pada file atau direktori:
+
+Setuid (Set User ID): Jika bit ini diset pada sebuah file executable, program akan berjalan dengan hak akses pemilik file, bukan pengguna yang menjalankan program. Berguna untuk aplikasi yang memerlukan hak akses khusus.
+Contoh: chmod u+s file.txt.
+Setgid (Set Group ID): Jika diset pada sebuah direktori, setiap file baru yang dibuat dalam direktori tersebut akan mewarisi grup dari direktori, bukan dari pengguna yang membuat file.
+Contoh: chmod g+s directory/.
+Sticky Bit: Jika diset pada direktori, hanya pemilik file atau direktori yang bisa menghapus atau mengubah file, bahkan jika orang lain memiliki izin tulis di direktori tersebut. Biasanya digunakan di direktori seperti /tmp.
+Contoh: chmod +t directory/.
+7. Contoh Penggunaan Izin
+Misalnya, sebuah file dengan izin berikut:
+
+css
+Copy code
+-rw-r--r--
+Ini berarti:
+
+Pemilik file bisa membaca dan menulis file.
+Grup hanya bisa membaca file.
+Pengguna lain (others) hanya bisa membaca file.
+Untuk mengubah izin agar grup dapat menulis file, Anda bisa menggunakan:
+
+bash
+Copy code
+chmod g+w file.txt
+Setelah perintah ini, izin file menjadi:
+
+diff
+Copy code
+-rw-rw-r--
+8. Memahami Izin pada Direktori
+Izin pada direktori memiliki arti yang sedikit berbeda dari file:
+
+r (read): Mengizinkan melihat daftar isi direktori (misalnya, dengan ls).
+w (write): Mengizinkan membuat, menghapus, atau mengganti nama file dalam direktori.
+x (execute): Mengizinkan mengakses file atau memasuki direktori.
+Kesimpulan
+Memahami file permissions di Linux sangat penting untuk mengelola keamanan dan kontrol akses pada file dan direktori. Izin tersebut mengatur siapa yang bisa melakukan apa pada sistem file, dan dengan memahami cara menggunakannya, Anda dapat dengan efektif mengamankan data Anda di sistem Linux.

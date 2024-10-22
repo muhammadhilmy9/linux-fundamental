@@ -1,0 +1,21 @@
+#Mengubah Izin file (chmod)
+rwx = 4+2+1=7
+chmod 755
+7 atau rwx pada pemilik
+5 atau r-x pada group
+5 atau r-x pada others (user lain)
+
+#Mengubah kepemilikan File (chown dan chgrp)
+chown: mengubah pemilik dan grup dari file atau direktory
+chown owner file.txt         # Mengubah pemilik file
+chown owner:group file.txt   # Mengubah pemilik dan grup file
+chown -R owner:group /path   # Mengubah pemilik dan grup secara rekursif (direktori dan isinya)
+
+chgrp: mengubah grup dari file atau direktory
+chgrp group file.txt         # Mengubah grup file
+chgrp -R group /path         # Mengubah grup secara rekursif pada direktori
+
+#mengubah pemilik dan group 
+chown user:group data.txt
+
+
