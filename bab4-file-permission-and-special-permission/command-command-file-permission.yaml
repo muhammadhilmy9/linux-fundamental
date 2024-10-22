@@ -18,4 +18,7 @@ chgrp -R group /path         # Mengubah grup secara rekursif pada direktori
 #mengubah pemilik dan group 
 chown user:group data.txt
 
-
+#note
+Full Permission 777 666
+umask 022 022
+Default Permission 755 644
