@@ -1,0 +1,39 @@
+1. Configure the network:
+   Assign Hostname and IP addresses for your virtual machines as per the following hostname: node1.lab.example.com
+   IP Address: 192.168.143.31 in exam most of time have: 172.25.3.10
+   Net mask: 255.255.255.0   
+   Dns: 8.8.8.8              in exam most of time have: 172.25.3.254
+   Gateway: 192.168.143.1     in exam most of time have: 172.25.3.254
+
+   solution:
+   Change hostname
+   #hostnamectl set-hostname node1.lab.example.com
+   #hostname
+   #hostnamectl   (to verify)
+   
+   Change IP Addresses
+   check pengaturan DNS
+   #lsattr /etc/resolv.conf =  check apakah immutable atau tidak.
+   jika sudah immutable, maka perlu dibuat tidak immutable dengan command
+   #chattr -ii /etc/resolv.conf 
+   file /etc/resolv.conf berisi configurasi DNS, seperti alamat server DNS yang digunakan untuk melakukan resolusi nama domain. di beberapa sistem, file ini mungkinsecara otomatis diubah oleh layanan network manager atau dhcp client. untuk mencegah perubahan yang tidak diinginkan pada pengaturan DNS, bisa menggunakan perintah ini untuk membuat file /etc/resolv.conf immutable, sehingga isinya tidak bisa dirubah kecuali atribut ini dihapus. cara menghapusnya adalah dengan merubah -i menjadi +i.
+     
+   Langkah 1 tampilkan daftar koneksi 
+   nmcli connection show 
+   nmcli device show
+   
+   langkah 2 configure dan edit 
+   nmcli connection modify (general connection name ex: ens 160) ipv4.addresses 192.168.143.31/24 (perubahan ip tujuan kita) ipv4.gateway 192.168.143.1 ipv4.dns 8.8.8.8 ipv4.method manual autoconnect yes
+
+   langkah 3 down kan nmcli
+   nmcli connection down ens160 
+
+   langkah 4 up kan nmcli 
+   nmcli connection up ens160
+
+   langkah 5 verify
+   nmcli device show 
+
+   langkah 6 rubah /etc/resolv.conf menjadi immutable kembali
+   nmcli /etc/resolv.conf
+   
