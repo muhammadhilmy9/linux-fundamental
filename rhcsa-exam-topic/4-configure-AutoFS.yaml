@@ -1,0 +1,16 @@
+Teori AutoFs 
+autofs di RHEL (Red Hat Enterprise Linux) digunakan untuk mengotomatisasi proses mounting sistem file secara dinamis saat dibutuhkan, dan kemudian unmounting secara otomatis ketika tidak lagi digunakan. Ini sangat berguna untuk mengelola sistem file jaringan seperti NFS (Network File System) atau direktori lokal yang jarang diakses.
+
+Kegunaan Utama autofs:
+- Mount Otomatis saat Diakses:
+
+Ketika Anda mengakses direktori yang dikelola oleh autofs, ia akan secara otomatis me-mount sistem file yang diperlukan, baik dari jaringan (seperti NFS) atau dari sumber lokal (misalnya, drive USB). Ini menghemat sumber daya karena hanya melakukan mount saat dibutuhkan.
+- Unmount Otomatis Ketika Tidak Diakses:
+
+Jika direktori yang di-mount tidak diakses dalam jangka waktu tertentu, autofs akan secara otomatis meng-unmount sistem file tersebut. Ini membantu mencegah penggunaan sumber daya yang tidak perlu dan mengurangi risiko korupsi file jika jaringan putus secara tidak terduga.
+- Mengurangi Beban Administrasi:
+
+Dengan autofs, administrator tidak perlu secara manual me-mount dan meng-unmount sistem file. Semua dilakukan secara otomatis berdasarkan akses pengguna.
+- Optimasi untuk Sistem Berbasis Jaringan:
+
+autofs sering digunakan dengan NFS di lingkungan jaringan besar untuk me-mount direktori dari server file jarak jauh ketika pengguna mengakses direktori tertentu di klien, sehingga sangat membantu dalam mengelola resource-sharing jaringan.
