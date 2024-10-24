@@ -1,0 +1,25 @@
+2. configure the repositories in node 1 machine which are available on the repo server at: 
+   http://repo.eight.example.com/BaseOS
+   http://repo.eight.example.com/AppStream
+
+   solution:
+   #yum repolist all
+   #cd /etc/yum.repos.d/
+   #vim local.repo
+   ketikkan seperti dibawah ini
+
+   [AppStream]
+   name=Appstream
+   baseurl=http://192.168.143.30/localrepo/AppStream/
+   enabled=1
+   gpgcheck=0
+
+   [BaseOS]
+   name=BaseOS
+   baseurl=http://192.168.143.30/localrepo/BaseOS/
+   enabled=1
+   gpgcheck=0
+
+   #yum clean all
+   #yum makecache
+

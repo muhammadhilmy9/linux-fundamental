@@ -1,0 +1,57 @@
+Your web content has been configured in port 82 at the /var/www/html directory (Dont alter or remove any files in the directory) make the content accessible.
+
+Solution:
+
+#dnf install httpd -y
+#systemctl start httpd
+#systemctl enable httpd -now
+#systemctl status httpd 
+#cd /var/www/html
+#ls -l
+#echo "this is our test web page" > index.html
+#cat > file1
+#ll
+
+change konfigurasi httpd dari port 80 ke 82
+#vim /etc/httpd/conf/httpd.conf
+rubah listen dari 80 ke 82
+
+setelah itu makesure dan lihat command yang terkait dengan layanan http yang diatur oleh SELinux
+#semanage port -l | grep http
+
+tambahkan port tcp 82 ke dalam daftar port yang diperbolehkan oleh SELinux untuk layanan http 
+#semanage port -a -t http_port_t -p tcp 82
+
+cekkembali
+#semanage port -l | grep http
+
+Jika menggunakan firewalld maka perlu di configure juga
+cek firewall
+#firewall-cmd --list-all
+#firewall-cmd --permanent --add-service=http
+#firewall-cmd --permanent --add-port=82/tcp
+#firewall-cmd --reload 
+#firewall-cmd --list-all
+
+restart httpd.service
+#systemctl restart httpd.service
+
+Cek koneksi
+#curl 192.168.143.31:82/index.html
+
+
+cek status SeLinux
+#getenforce
+Mode yang Ditampilkan oleh getenforce:
+Perintah ini akan menampilkan salah satu dari tiga status berikut:
+
+Enforcing:
+
+SELinux dalam mode aktif penuh dan sedang menegakkan kebijakan keamanan. Semua aturan SELinux akan diterapkan, dan jika ada tindakan yang melanggar kebijakan, SELinux akan memblokir tindakan tersebut.
+Permissive:
+
+SELinux dalam mode permissive. Pada mode ini, SELinux tidak memblokir tindakan, tetapi masih mencatat (log) setiap pelanggaran kebijakan. Ini sering digunakan untuk debugging atau pengujian konfigurasi SELinux sebelum diaktifkan secara penuh.
+Disabled:
+
+SELinux dinonaktifkan sepenuhnya, dan tidak ada kebijakan SELinux yang diterapkan atau dicatat.
+
